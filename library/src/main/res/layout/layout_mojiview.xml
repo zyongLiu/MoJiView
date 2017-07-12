@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#253D52"
+    android:orientation="horizontal">
+
+
+    <RelativeLayout
+        android:id="@+id/rlTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvTemMax"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12°"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvTemMin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12°"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvAQH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="空气"
+            android:textColor="@android:color/white" />
+
+        <TextView
+            android:id="@+id/tvWind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="风力"
+            android:textColor="@android:color/white" />
+    </RelativeLayout>
+
+    <com.liu.library.view.ForecaseScrollView
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <com.liu.library.view.ForecaseView
+            android:id="@+id/fv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.liu.library.view.ForecaseScrollView>
+</LinearLayout>
