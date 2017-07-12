@@ -91,7 +91,15 @@ public class ForecaseView extends View {
     //视图区域左侧
     private int leftX;
     //视图区域右侧
-    private int rightY;
+    private int rightX;
+
+    /**
+     * 是否要画空气质量
+     */
+    private boolean isAQHDraw = false;
+
+    private int leftVisiableIndex = 0;
+    private int rightVisiableIndex;
 
     public ForecaseView(Context context) {
         this(context, null);
@@ -209,7 +217,7 @@ public class ForecaseView extends View {
         textEnd = mWidth - marginRight - cellWidth / 2;
 
         leftX = 0;
-        rightY = mWidth;
+        rightX = mWidth;
 
         if (drawDataReadly != null) {
             drawDataReadly.aqhWind(marginTop + temperatureHeight + aqiHeight, marginTop + temperatureHeight + aqiHeight + windHeight);
@@ -225,16 +233,10 @@ public class ForecaseView extends View {
         super.onSizeChanged(w, h, oldw, oldh);
     }
 
-    /**
-     * 是否要画空气质量
-     */
-    private boolean isAQHDraw = false;
-
-    private int leftVisiableIndex = 0;
-    private int rightVisiableIndex;
-
     @Override
     protected void onDraw(Canvas canvas) {
+        canvas.clipRect(leftX - 10, 0, rightX + 10, mHeight);
+
         long startDate = System.currentTimeMillis();
         rightVisiableIndex = numValue;
         isAQHDraw = true;
@@ -447,7 +449,7 @@ public class ForecaseView extends View {
      * @return
      */
     public int visiableContain(float left, float right) {
-        if (right >= leftX - 10 && left <= rightY + 10) {
+        if (right >= leftX - 10 && left <= rightX + 10) {
             return 0;
         } else if (right < leftX - 10) {
             return -1;
@@ -554,7 +556,7 @@ public class ForecaseView extends View {
     public void onScrollChanged(int width, int oldl, int total) {
         LogUtils.d("width:" + width + ",total:" + total);
         leftX = width;
-        rightY = leftX + total;
+        rightX = leftX + total;
         rate = width * 1.0f / (mWidth - total);
         rate = (float) (Math.round(rate * 1000)) / 1000;
         fowward = width >= oldl;
