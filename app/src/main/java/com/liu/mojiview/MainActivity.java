@@ -52,7 +52,4 @@ public class MainActivity extends AppCompatActivity{
         mojiView.setForecaseBeen(data);
     }
 
-
-
-
 }
